@@ -1,0 +1,4 @@
+Howto
+======
+
+.. include:: ../../HOWTO.rst

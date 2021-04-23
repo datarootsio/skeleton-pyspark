@@ -11,17 +11,27 @@
 For more info on how to use it check out :ref:`HOWTO.rst`.
 Feel free to use it how it suits you best 🚀
 
+
+TODO
+^^^^
+
 - [ ] Testing (Which module, local testing)
-- [ ] README overall
+- [x] README overall. needs updating but structure present
 - [ ] HOWTO which contains what to expect, what it gives and how to proceed
-- [x] Directory structure
+- [x] Directory structure. Organized, but needs improvement
 - [ ] Packaging (so that it also runs on the cluster).
-- [ ] sphinx documentation
+- [x] sphinx documentation. Setup but needs fine tuning.
+
+  + [ ] howto_link.rst is real ugly. See if it can be fixed
+  + [ ] Combine the Makefile of docs with regular Makefile?
 - [ ] mypy
 - [ ] GitHub action
+  + [ ] What needs to be in here? pytest
 - [ ] Makefile
 - [ ] code coverage
 - [ ] logging
+- [ ] tox
+
 
 PROJECT NAME
 ============
@@ -60,4 +70,5 @@ Deploy
 
 ::
 
-    copyright by `your company` main developer `developer_name` (`developer email`)
+    copyright by `your company`
+    main developer `developer_name` (`developer email`)
