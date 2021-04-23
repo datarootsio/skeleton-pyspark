@@ -13,6 +13,4 @@ def extract_file(spark: SparkSession) -> DataFrame:
 
     """
     path_to_local_file = f"file://{Path(__file__).parents[2]}/LICENSE"
-    return (spark.
-            read.
-            text(path_to_local_file))
+    return spark.read.text(path_to_local_file)

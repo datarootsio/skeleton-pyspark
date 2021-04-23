@@ -2,9 +2,7 @@ from pyspark.sql import DataFrame
 from pyspark.sql import functions as func
 
 
-def explode_df(df: DataFrame,
-               input_col: str,
-               output_col: str) -> DataFrame:
+def explode_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
     Explodes the input_column
     Args:
@@ -16,17 +14,12 @@ def explode_df(df: DataFrame,
         DataFrame with column exploded
 
     """
-    return (df.select(func
-                      .explode(func
-                               .split(func
-                                      .col(input_col),
-                                      " "))
-                      .alias(output_col)))
+    return df.select(
+        func.explode(func.split(func.col(input_col), " ")).alias(output_col)
+    )
 
 
-def clean_df(df: DataFrame,
-             input_col: str,
-             output_col: str) -> DataFrame:
+def clean_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
     Cleans the df's column by removing non-alphanumeric
     characters from the column and empty-strings
@@ -39,19 +32,12 @@ def clean_df(df: DataFrame,
         DataFrame with cleaned data
 
     """
-    return (df
-            .select(func
-                    .regexp_replace(func
-                                    .col(input_col),
-                                    r"[^a-zA-Z\d]", "")
-                    .alias(output_col))
-            .where(func
-                   .col(output_col) != ""))
+    return df.select(
+        func.regexp_replace(func.col(input_col), r"[^a-zA-Z\d]", "").alias(output_col)
+    ).where(func.col(output_col) != "")
 
 
-def lower_case_df(df: DataFrame,
-                  input_col: str,
-                  output_col: str) -> DataFrame:
+def lower_case_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
     Lower cases a DataFrame's column
     Args:
@@ -62,15 +48,10 @@ def lower_case_df(df: DataFrame,
     Returns:
         DataFrame which contains the lower cased column
     """
-    return (df
-            .select(func.lower(func
-                               .col(input_col))
-                    .alias(output_col)))
+    return df.select(func.lower(func.col(input_col)).alias(output_col))
 
 
-def count_df(df: DataFrame,
-             input_col: str,
-             output_col: str) -> DataFrame:
+def count_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
     Counts the instances of the input_column and enters them in output_column
     Args:
@@ -82,11 +63,7 @@ def count_df(df: DataFrame,
         DataFrame which contains the count of words
 
     """
-    return (df
-            .groupBy(input_col)
-            .agg(func
-                 .count(input_col)
-                 .alias(output_col)))
+    return df.groupBy(input_col).agg(func.count(input_col).alias(output_col))
 
 
 def transform_df(raw_df: DataFrame) -> DataFrame:
@@ -99,11 +76,13 @@ def transform_df(raw_df: DataFrame) -> DataFrame:
         DataFrame of single-column text file
 
     """
-    return (raw_df
-            .transform(lambda df: explode_df(df, input_col="value", output_col="exploded"))
-            .transform(lambda df: clean_df(df, input_col="exploded", output_col="cleaned"))
-            .transform(lambda df: lower_case_df(df, input_col="cleaned", output_col="lower_cased"))
-            .transform(lambda df: count_df(df, input_col="lower_cased", output_col="count"))
-            )
-
-
+    return (
+        raw_df.transform(
+            lambda df: explode_df(df, input_col="value", output_col="exploded")
+        )
+        .transform(lambda df: clean_df(df, input_col="exploded", output_col="cleaned"))
+        .transform(
+            lambda df: lower_case_df(df, input_col="cleaned", output_col="lower_cased")
+        )
+        .transform(lambda df: count_df(df, input_col="lower_cased", output_col="count"))
+    )

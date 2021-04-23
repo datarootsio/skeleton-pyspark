@@ -19,7 +19,9 @@ run-pipeline: clean
 
 lint: ## flake8 linting and black code style
 	@echo ">>> black files"
+	black src tests
 	@echo ">>> linting files"
+	flake8 src tests
 
 coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
