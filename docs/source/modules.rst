@@ -1,9 +1,26 @@
-src
-===
+source code
+===========
 
-.. toctree::
-   :maxdepth: 4
+extract
+^^^^^^^
 
-   extract
-   load
-   transform
+.. automodule:: extract
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+transform
+^^^^^^^^^
+
+.. automodule:: transform
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+load
+^^^^^
+
+.. automodule:: load
+   :members:
+   :undoc-members:
+   :show-inheritance:

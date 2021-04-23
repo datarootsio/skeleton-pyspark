@@ -10,10 +10,9 @@ Contents:
 
 .. toctree::
    :maxdepth: 4
-   :caption: Source Code
 
-   modules
    howto_link
+   modules
 
 Indices and tables
 ==================

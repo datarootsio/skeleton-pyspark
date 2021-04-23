@@ -1,4 +1,1 @@
-Howto
-======
-
 .. include:: ../../HOWTO.rst

@@ -23,7 +23,8 @@ lint: ## flake8 linting and black code style
 
 coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
-	pytest --cov=./ --cov-report=xml
+	coverage run --source=src -m pytest
+	coverage report -m
 
 test: ## run unit tests in the current virtual environment
 	@echo ">>> running unit tests with the existing environment"
