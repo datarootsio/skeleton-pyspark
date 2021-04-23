@@ -26,36 +26,35 @@ Feel free to use it how it suits you best 🚀
 PROJECT NAME
 ============
 
-::
-    Project for: `client name`
+Project for: `client name`
 
 Objective
-=========
+^^^^^^^^^
 
 `ADD OBJECTIVE OF CASE`
 
 Explorative results
-===================
+^^^^^^^^^^^^^^^^^^^
 
 `SHORT SUMMARY AND LINK TO REPORT`
 
 Modelling results
-=================
+^^^^^^^^^^^^^^^^^
 
 `SHORT SUMMARY AND LINK TO REPORT`
 
 Usage
-=====
+^^^^^
 
 `ADD EXPLANATION`
 
 Configuration
-=============
+^^^^^^^^^^^^^
 
 `RELEVANT INFO ON CONFIGURATION`
 
 Deploy
-======
+^^^^^^
 
 `RELEVANT INFO ON DEPLOYMENT`
 
