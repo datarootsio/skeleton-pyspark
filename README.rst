@@ -8,7 +8,7 @@
 
 
 **NOTE:** This is a best-practices first project template that allows you to get started on a new pyspark project.
-For more info on how to use it check out :ref:`HOWTO.rst`.
+For more info on how to use it check out :ref:`HOWTO-label`.
 Feel free to use it how it suits you best 🚀
 
 

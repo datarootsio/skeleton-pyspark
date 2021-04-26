@@ -1,5 +1,6 @@
-from src.jobs import extract, transform, load
 from pyspark.sql import SparkSession
+
+from src.jobs import extract, transform, load
 
 
 def main():

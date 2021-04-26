@@ -1,39 +1,44 @@
-.PHONY: help create_environment requirements train predict
+.PHONY: help docs
 .DEFAULT_GOAL := help
-
-
-###############################################################
-# GLOBALS                                                     #
-###############################################################
-
-
-###############################################################
-# COMMANDS                                                    #
-###############################################################
 
 clean: ## clean artifacts
 	@echo ">>> cleaning files"
 
-
-run-pipeline: clean
+run-pipeline: clean lint coverage
 
 lint: ## flake8 linting and black code style
 	@echo ">>> black files"
-	black src tests
+	poetry run black src tests
 	@echo ">>> linting files"
-	flake8 src tests
+	poetry run flake8 src tests
 
 coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
-	coverage run --source=src -m pytest
-	coverage report -m
+	poetry run coverage run --source=src -m pytest
+	poetry run coverage xml
+
+bandit: ## discover common security issues
+	@echo ">>> discover common security issues"
+	poetry run bandit src
 
 test: ## run unit tests in the current virtual environment
 	@echo ">>> running unit tests with the existing environment"
-	tox
+	poetry run pytest
 
-test-docker: ## run unit tests in docker environment
-	@echo ">>> running unit tests in an isolated docker environment"
+###########################################################################
+#### SPHINX Documentation
+
+SPHINXOPTS    ?=
+SPHINXBUILD   ?= poetry run sphinx-build
+SOURCEDIR     = docs/source
+BUILDDIR      = docs/build
+
+sphinx.%: ## sphinx documentation wildcard (eg. sphinx.html)
+	@echo ">>> Sphinx documentation. $*"
+	@$(SPHINXBUILD) -M $* "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+#############################################################################
+
 
 help: ## show help on available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
