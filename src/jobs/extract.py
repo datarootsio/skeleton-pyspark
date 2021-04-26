@@ -1,16 +1,15 @@
-from pathlib import Path
 from pyspark.sql import SparkSession, DataFrame
 
 
-def extract_file(spark: SparkSession) -> DataFrame:
+def extract_file(spark: SparkSession, file_path: str) -> DataFrame:
     """
     Extracts the local file into a DF
     Args:
         spark (SparkSession): spark session to read the file
+        file_path (str): file_path to extract
 
     Returns:
         DataFrame of single-column text file
 
     """
-    path_to_local_file = f"file://{Path(__file__).parents[2]}/LICENSE"
-    return spark.read.text(path_to_local_file)
+    return spark.read.text(file_path)

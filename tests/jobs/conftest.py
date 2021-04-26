@@ -3,5 +3,5 @@ from pyspark.sql.session import SparkSession
 
 
 @pytest.fixture(scope="module")
-def spark_session_test():
+def spark_session_test() -> SparkSession:
     return SparkSession.builder.appName("pytest").getOrCreate()

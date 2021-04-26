@@ -1,5 +1,4 @@
-from pyspark.sql import DataFrame
-from pyspark.sql import functions as func
+from pyspark.sql import DataFrame, functions as func
 
 
 def explode_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:

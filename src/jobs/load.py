@@ -1,8 +1,9 @@
 from pathlib import Path
+
 from pyspark.sql import DataFrame
 
 
-def write_to_path(df: DataFrame, path_to_write: str = None):
+def write_to_path(df: DataFrame, path_to_write: str = None) -> None:
     """
     Writes the dataframe to a local location
     Args:

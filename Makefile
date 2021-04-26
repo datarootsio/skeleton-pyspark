@@ -1,10 +1,7 @@
 .PHONY: help docs
 .DEFAULT_GOAL := help
 
-clean: ## clean artifacts
-	@echo ">>> cleaning files"
-
-run-pipeline: clean lint coverage
+run-pipeline: lint coverage bandit sphinx.html
 
 lint: ## flake8 linting and black code style
 	@echo ">>> black files"
