@@ -7,7 +7,7 @@ lint: ## flake8 linting and black code style
 	@echo ">>> black files"
 	poetry run black src tests
 	@echo ">>> linting files"
-	poetry run flake8 src tests
+	poetry run flake8 --extend-ignore=ANN101 src tests
 
 mypy: ## static type-check with mypy
 	@echo ">>> statically analyses code with mypy"

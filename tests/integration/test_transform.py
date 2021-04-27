@@ -1,4 +1,4 @@
-"""Unit-test transform jobs."""
+"""Integration-test transform jobs."""
 from pyspark.sql import SparkSession
 
 from src.jobs.transform import explode_df

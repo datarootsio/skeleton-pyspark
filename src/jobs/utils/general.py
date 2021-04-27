@@ -1,6 +1,7 @@
 """General utilities around the ETL job."""
 import argparse
 from pathlib import Path
+from enum import Enum
 
 
 def get_argument_parser() -> argparse.ArgumentParser:
@@ -16,7 +17,12 @@ def get_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("-v", "--verbose", action="store_true", required=False)
     parser.add_argument("--version", action="store_true", required=False)
     parser.add_argument(
-        "-e", "--env", choices=["dev", "prod", "stage"], action="store", required=True
+        "-e",
+        "--env",
+        type=EnvEnum,
+        choices=list(EnvEnum),
+        action="store",
+        required=True,
     )
     parser.add_argument(
         "-f",
@@ -26,3 +32,21 @@ def get_argument_parser() -> argparse.ArgumentParser:
         default=f"file://{Path(__file__).parents[3]}/LICENSE",
     )
     return parser
+
+
+class EnvEnum(Enum):
+    """Maintain the enums of the environments."""
+
+    dev = "dev"
+    prod = "prod"
+    stage = "stage"
+
+    def __str__(self: "Enum") -> str:
+        """
+        Modification needed for String Enum to work with argparse.
+
+        Returns:
+            str, value of string at Enum
+
+        """
+        return self.value
