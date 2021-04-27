@@ -5,6 +5,7 @@ import contextlib
 from argparse import Namespace
 from pyspark.sql import SparkSession
 from pathlib import Path
+from typing import Generator
 
 from src.jobs import extract, transform, load
 
@@ -14,7 +15,7 @@ def main(spark: SparkSession, file_path: str) -> None:
     High-level function to perform the ETL job.
 
     Args:
-        spark (SparkSession): spark session to perform ETL job
+        spark (SparkSession) : spark session to perform ETL job
         file_path (str): path on which the job will be performed
 
     """
@@ -24,7 +25,7 @@ def main(spark: SparkSession, file_path: str) -> None:
 
 
 @contextlib.contextmanager
-def spark_build(arguments: Namespace) -> None:
+def spark_build(arguments: Namespace) -> Generator[SparkSession, None, None]:
     """
     Build the spark object.
 

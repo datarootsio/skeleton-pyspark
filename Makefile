@@ -1,13 +1,17 @@
 .PHONY: help docs
 .DEFAULT_GOAL := help
 
-run-pipeline: lint coverage bandit sphinx.html
+run-pipeline: lint mypy bandit coverage sphinx.html
 
 lint: ## flake8 linting and black code style
 	@echo ">>> black files"
 	poetry run black src tests
 	@echo ">>> linting files"
 	poetry run flake8 src tests
+
+mypy: ## static type-check with mypy
+	@echo ">>> statically analyses code with mypy"
+	poetry run mypy -m run
 
 coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
@@ -34,6 +38,9 @@ sphinx.%: ## sphinx documentation wildcard (eg. sphinx.html)
 	@echo ">>> Sphinx documentation. $*"
 	@$(SPHINXBUILD) -M $* "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 #############################################################################
+
+submit: ## Packs the requirements in a wheel and submits the job
+	@echo ">>> pack requirements in a whl file and submit to the cluster"
 
 
 help: ## show help on available commands
