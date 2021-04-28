@@ -59,7 +59,7 @@ Try out the :code:`make <command>`.
 
 
 Project structure
-^^^^^^^^^^^^^^^^^
+-----------------
 The project structure tree is shown below.
 This structure is designed in a way to organize pyspark projects.
 Feedback / PRs are always welcome about the structure.
@@ -81,7 +81,7 @@ Feedback / PRs are always welcome about the structure.
 
 
 Build docs
-^^^^^^^^^^
+----------
 It is a pre-requisite that the dependencies are installed as described in see :ref:`Running the project`.
 Different flavours of the documentation can be generated with wildcard entries:
 

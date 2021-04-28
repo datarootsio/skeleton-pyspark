@@ -13,6 +13,10 @@ mypy: ## static type-check with mypy
 	@echo ">>> statically analyses code with mypy"
 	poetry run mypy -m run
 
+bandit: ## discover common security issues
+	@echo ">>> discover common security issues"
+	poetry run bandit src
+
 test: ## run tests in the current virtual environment
 	@echo ">>> running tests with the existing environment"
 	poetry run pytest
@@ -21,10 +25,6 @@ coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
 	poetry run coverage run --source=src -m pytest
 	poetry run coverage xml
-
-bandit: ## discover common security issues
-	@echo ">>> discover common security issues"
-	poetry run bandit src
 
 
 ###########################################################################
@@ -47,5 +47,5 @@ submit: ## Packs the requirements in a wheel and submits the job
 	spark-submit run.py $(RUN_ARGS)
 
 help: ## show help on available commands
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z.%_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
