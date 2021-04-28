@@ -1,4 +1,4 @@
-.PHONY: help docs
+.PHONY: help docs submit
 .DEFAULT_GOAL := help
 
 run-pipeline: lint mypy bandit coverage sphinx.html
@@ -41,6 +41,7 @@ sphinx.%: ## sphinx documentation wildcard (eg. sphinx.html)
 
 submit: ## Packs the requirements in a wheel and submits the job
 	@echo ">>> pack requirements in a whl file and submit to the cluster"
+	@echo ">>> This does not work right now"
 
 
 help: ## show help on available commands
