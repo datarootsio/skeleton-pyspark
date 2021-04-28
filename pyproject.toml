@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "skeleton-pyspark"
+name = "src"
 version = "0.1.0"
 description = ""
 authors = ["Dataroots <info@dataroots.io>"]

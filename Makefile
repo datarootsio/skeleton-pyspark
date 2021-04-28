@@ -13,6 +13,10 @@ mypy: ## static type-check with mypy
 	@echo ">>> statically analyses code with mypy"
 	poetry run mypy -m run
 
+test: ## run tests in the current virtual environment
+	@echo ">>> running tests with the existing environment"
+	poetry run pytest
+
 coverage: ## create coverage report
 	@echo ">>> running coverage pytest"
 	poetry run coverage run --source=src -m pytest
@@ -22,9 +26,6 @@ bandit: ## discover common security issues
 	@echo ">>> discover common security issues"
 	poetry run bandit src
 
-test: ## run unit tests in the current virtual environment
-	@echo ">>> running unit tests with the existing environment"
-	poetry run pytest
 
 ###########################################################################
 #### SPHINX Documentation
@@ -39,10 +40,11 @@ sphinx.%: ## sphinx documentation wildcard (eg. sphinx.html)
 	@$(SPHINXBUILD) -M $* "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 #############################################################################
 
-submit: ## Packs the requirements in a wheel and submits the job
-	@echo ">>> pack requirements in a whl file and submit to the cluster"
-	@echo ">>> This does not work right now"
 
+RUN_ARGS     ?= --env dev
+submit: ## Packs the requirements in a wheel and submits the job
+	@echo ">>> TODO: pack requirements in a whl/zip file and submit to the cluster with --py-files"
+	spark-submit run.py $(RUN_ARGS)
 
 help: ## show help on available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

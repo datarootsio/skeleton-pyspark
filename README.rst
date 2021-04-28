@@ -14,31 +14,6 @@ For more info on how to use it check out :ref:`HOWTO-label`.
 Feel free to use it how it suits you best 🚀
 
 
-TODO
-^^^^
-
-- [ ] Testing (Which module, local testing)
-
-  + [x] code coverage
-  + [ ] tox probably does not make much sense with the Makefile. Remove it probably?
-- [x] README overall. needs updating but structure present
-
-  + [ ] Find a way to link that HOWTO from README
-- [ ] HOWTO which contains what to expect, what it gives and how to proceed
-- [x] Directory structure. Organized.
-- [ ] Packaging (so that it also runs on the cluster).
-- [x] sphinx documentation. Mostly okay.
-
-  + [ ] howto_link.rst is real ugly. See if it can be fixed
-  + [ ] Combine the Makefile of docs with regular Makefile?
-- [ ] mypy
-- [ ] GitHub action
-
-  + [ ] What needs to be in here? pytest
-- [ ] Makefile
-- [ ] logging
-
-
 PROJECT NAME
 ============
 
