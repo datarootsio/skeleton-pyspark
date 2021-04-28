@@ -48,6 +48,10 @@ class Logger:
         levels = self.spark._jvm.org.apache.log4j.Level  # type: ignore
         if env == EnvEnum.dev:
             specific_level = levels.DEBUG
+        elif env == EnvEnum.stage:
+            specific_level = levels.INFO
+        elif env == EnvEnum.prod:
+            specific_level = levels.WARN
         else:
             raise NotImplementedError
         self.logger.warn(f"Setting log level to {specific_level}")
