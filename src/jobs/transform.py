@@ -1,10 +1,11 @@
-from pyspark.sql import DataFrame
-from pyspark.sql import functions as func
+"""This module is responsible for transform (T) in ETL."""
+from pyspark.sql import DataFrame, functions as func
 
 
 def explode_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
-    Explodes the input_column
+    Explodes the input_column.
+
     Args:
         df (DataFrame): DataFrame which contains a column "input_column"
         input_col (str): input column name
@@ -21,8 +22,9 @@ def explode_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
 
 def clean_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
-    Cleans the df's column by removing non-alphanumeric
-    characters from the column and empty-strings
+    Clean the df's column by removing non-alphanumeric \
+    characters from the column and empty-strings.
+
     Args:
         df (DataFrame): DataFrame which contains a column "input_column"
         input_col(str): input column for the transformation
@@ -39,7 +41,8 @@ def clean_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
 
 def lower_case_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
-    Lower cases a DataFrame's column
+    Lower cases a DataFrame's column.
+
     Args:
         df (DataFrame): DataFrame whose column needs to be lower cased
         input_col (str): input column for the transformation
@@ -53,7 +56,8 @@ def lower_case_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
 
 def count_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
     """
-    Counts the instances of the input_column and enters them in output_column
+    Count the instances of the input_column and enters them in output_column.
+
     Args:
         df (DataFrame): DataFrame whose column needs to be counted
         input_col (str): input column name which should be counted
@@ -68,7 +72,8 @@ def count_df(df: DataFrame, input_col: str, output_col: str) -> DataFrame:
 
 def transform_df(raw_df: DataFrame) -> DataFrame:
     """
-    Counts the number of occurrence of words in the dataframe
+    Count the number of occurrence of words in a single-column raw dataframe.
+
     Args:
         raw_df (DataFrame): raw dataframe extracted from the text
 

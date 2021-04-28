@@ -31,6 +31,9 @@ jobs:
     - name: Lint with flake8 and black
       run: make lint
 
+    - name: Static check with mypy
+      run: make mypy
+
     - name: PyBandit to discover security issues
       run: make bandit
 
@@ -40,10 +43,9 @@ jobs:
     - name: Upload coverage
       uses: codecov/codecov-action@v1
       with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         file: ./coverage.xml
-        # TODO: This needs a token from CODECOV as it is private.
-        # Should be changed to true if fails
-        fail_ci_if_error: false
+        fail_ci_if_error: true
 
     - name: Sphinx documentation build
       run: make SPHINXOPTS="-W" sphinx.html
