@@ -1,0 +1,10 @@
+services:
+
+  # Package dependencies for the spark-submit job
+  build_dep:
+    build:
+      context: .
+      dockerfile: docker/package_dependency.Dockerfile
+    volumes:
+      - .:/app
+    container_name: build_dep

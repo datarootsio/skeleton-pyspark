@@ -10,9 +10,10 @@
     :target: https://codecov.io/gh/datarootsio/skeleton-pyspark
 
 **NOTE:** This is a best-practices first project template that allows you to get started on a new pyspark project.
-For more info on how to use it check out :ref:`HOWTO-label`.
+For more info on how to use it check out the `HOWTO`_ section.
 Feel free to use it how it suits you best 🚀
 
+.. _HOWTO: HOWTO.rst
 
 PROJECT NAME
 ============
