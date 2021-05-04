@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "src"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Dataroots <info@dataroots.io>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^3.5.4"

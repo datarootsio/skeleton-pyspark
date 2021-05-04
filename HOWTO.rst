@@ -52,12 +52,14 @@ Try out the :code:`make <command>`.
 +----------------+---------------------------------------------------+
 | sphinx.html    | build html documentation                          |
 +----------------+---------------------------------------------------+
-| submit         | submits the job via `spark-submit`                |
+| submit         | submits the job without any extra dependency      |
++----------------+---------------------------------------------------+
+| submit_with_dep| submits the job with packaged dependency          |
 +----------------+---------------------------------------------------+
 | run-pipeline   | runs the full-CI/CD workflow locally              |
 +----------------+---------------------------------------------------+
 
-
+-----------------
 Project structure
 -----------------
 The project structure tree is shown below.
@@ -79,7 +81,33 @@ Feedback / PRs are always welcome about the structure.
         ├── integration   # Integration tests
         └── unit          # Unit tests
 
+---------------
+Submitting jobs
+---------------
+Jobs are submitted to the cluster with the :code:`spark-submit` script.
 
+- If the nodes on the cluster already have all the required Python dependencies installed locally, :code:`make submit` can be used. This will not use the :code:`--py-files` argument.
+
+
+- If a particular dependency is missing on the nodes of the cluster :code:`make submit_with_dep` can be used to package the dependency with the :code:`--py-files` `argument <https://spark.apache.org/docs/3.1.1/submitting-applications.html#bundling-your-applications-dependencies>`_.
+
+
+Using :code:`make submit_with_dep`
+-----------------------------------------
+:code:`make submit_with_dep` can be used to package and send Python dependencies to the cluster-node if it does not have the required Python dependencies.
+
+#. Ensure that the poetry per-requisite is installed as described in :ref:`Running the project`.
+#. Extra dependencies can be added to the `pyproject.toml` with the :code:`poetry add <module_name>` command. For example :code:`poetry add click`.
+#. In `docker/package_dependency.Dockerfile` edit the `FROM python:3.8` to the operating system of the nodes. This step is strictly not-necessary if the new dependency added in step 2 are pure-python files. For example: if the nodes are running Ubuntu 20.04, change the line to `FROM ubuntu:20.04`.
+#. Submit the job with :code:`make submit_with_dep`.
+
+This will build a docker image where the Python modules are installed which are archived as package.zip in the root directory. They are submitted to the cluster with the command
+
+.. code:: bash
+
+    spark-submit --py-files package.zip run.py arg1 arg2
+
+----------
 Build docs
 ----------
 It is a pre-requisite that the dependencies are installed as described in see :ref:`Running the project`.
@@ -89,7 +117,4 @@ Different flavours of the documentation can be generated with wildcard entries:
 
     make sphinx.html # Builds HTML doc at docs/build/html/index.html
     make sphinx.epub # Builds EPUB doc at docs/build/epub
-
-
-
 

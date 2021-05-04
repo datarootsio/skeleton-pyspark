@@ -1,6 +1,5 @@
 """This module is the entry-point for the run.py to handle spark session \
 building and ETL."""
-import click
 
 import contextlib
 from argparse import Namespace
