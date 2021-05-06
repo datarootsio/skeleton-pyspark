@@ -5,9 +5,9 @@ run-pipeline: lint mypy bandit coverage sphinx.html
 
 lint: ## flake8 linting and black code style
 	@echo ">>> black files"
-	poetry run black src tests
+	poetry run black src tests run.py
 	@echo ">>> linting files"
-	poetry run flake8 --extend-ignore=ANN101 src tests
+	poetry run flake8 --extend-ignore=ANN101 src tests run.py
 
 mypy: ## static type-check with mypy
 	@echo ">>> statically analyses code with mypy"
@@ -15,7 +15,7 @@ mypy: ## static type-check with mypy
 
 bandit: ## discover common security issues
 	@echo ">>> discover common security issues"
-	poetry run bandit src
+	poetry run bandit src run.py
 
 test: ## run tests in the current virtual environment
 	@echo ">>> running tests with the existing environment"

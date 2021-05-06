@@ -1,20 +1,24 @@
-import sys
+"""Entry point to the pyspark job."""
+import typer
+from pathlib import Path
 
-from src.jobs import (
-    main,
-)
-from src.jobs.utils.general import (
-    get_argument_parser,
-)
+from src.jobs.main import jobs_main, spark_build
+from src.jobs.utils.general import EnvEnum
 from src.jobs.utils import log_utils
 
-if __name__ == '__main__':
-    argument_parser = get_argument_parser()
-    arguments = argument_parser.parse_args(sys.argv[1:])
-    with main.spark_build(arguments) as spark:
-        logger = log_utils.Logger(env=arguments.env,
-                                  spark=spark)
+
+def main(
+    env: EnvEnum = typer.Argument(..., help="Environment for the spark-job"),
+    file_path: str = typer.Argument(
+        f"file://{Path(__file__).parent}/LICENSE", help="File which will be parsed"
+    ),
+) -> None:
+    """Execute main function for the package."""
+    with spark_build(env=env) as spark:
+        logger = log_utils.Logger(env=env, spark=spark)
         logger.info("Spark and logger initialized")
-        main.main(spark,
-                  logger,
-                  file_path=arguments.file_path)
+        jobs_main(spark, logger, file_path=file_path)
+
+
+if __name__ == "__main__":
+    typer.run(main)

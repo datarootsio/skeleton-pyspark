@@ -2,7 +2,6 @@
 building and ETL."""
 
 import contextlib
-from argparse import Namespace
 from pyspark.sql import SparkSession
 from pathlib import Path
 from typing import Generator
@@ -12,7 +11,7 @@ from src.jobs.utils.general import EnvEnum
 from src.jobs.utils.log_utils import Logger
 
 
-def main(spark: SparkSession, logger: Logger, file_path: str) -> None:
+def jobs_main(spark: SparkSession, logger: Logger, file_path: str) -> None:
     """
     High-level function to perform the ETL job.
 
@@ -33,12 +32,12 @@ def main(spark: SparkSession, logger: Logger, file_path: str) -> None:
 
 
 @contextlib.contextmanager
-def spark_build(arguments: Namespace) -> Generator[SparkSession, None, None]:
+def spark_build(env: EnvEnum) -> Generator[SparkSession, None, None]:
     """
     Build the spark object.
 
     Args:
-        arguments (Namespace): arguments passed to the run.py
+        env (EnvEnum): environment of the spark-application
 
     Yields:
         SparkSession object
@@ -46,7 +45,6 @@ def spark_build(arguments: Namespace) -> Generator[SparkSession, None, None]:
     """
     spark_builder = SparkSession.builder
     app_name = Path(__file__).parent.name
-    env = arguments.env
 
     if env == EnvEnum.dev:
         spark = spark_builder.appName(app_name).getOrCreate()
