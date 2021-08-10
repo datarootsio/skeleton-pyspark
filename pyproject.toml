@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "src"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["Dataroots <info@dataroots.io>"]
 license = "MIT"
@@ -19,7 +19,6 @@ black = "^20.8b1"
 bandit = "^1.7.0"
 flake8-annotations = "^2.6.2"
 flake8-docstrings = "^1.6.0"
-mypy = "^0.812"
 pytest-mock = "^3.6.0"
     
 [build-system]
