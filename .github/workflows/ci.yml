@@ -28,11 +28,8 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
 
-    - name: Lint with flake8 and black
+    - name: Lint with flake8
       run: make lint
-
-    - name: Static check with mypy
-      run: make mypy
 
     - name: PyBandit to discover security issues
       run: make bandit

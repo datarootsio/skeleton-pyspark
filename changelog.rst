@@ -9,7 +9,7 @@ This document records all notable changes to `Skeleton-Pyspark <https://github.c
 
 * Bugfix/ Drop black as it can sometimes make the cord hard to read
 
-* Bugfix/Drop mypy whose good parts are mostly covered by flake8-annotations
+* Bugfix/ Drop mypy whose good parts are mostly covered by flake8-annotations
 
 * Feature/Ability to package and send dependency to the cluster (Stage 2)
 https://www.notion.so/dataroots/Pyspark-metho-as-code-repo-d2ea171872604cc1bbf062cf4131373f
