@@ -3,9 +3,7 @@
 
 run-pipeline: lint mypy bandit coverage sphinx.html
 
-lint: ## flake8 linting and black code style
-	@echo ">>> black files"
-	poetry run black src tests run.py
+lint: ## flake8 linting
 	@echo ">>> linting files"
 	poetry run flake8 --extend-ignore=ANN101 src tests run.py
 

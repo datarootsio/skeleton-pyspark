@@ -40,9 +40,7 @@ Try out the :code:`make <command>`.
 +================+===================================================+
 | help           | lists the options available with make             |
 +----------------+---------------------------------------------------+
-| lint           | flake8 lint and black code style                  |
-+----------------+---------------------------------------------------+
-| mypy           | static analysis with mypy                         |
+| lint           | flake8 lint code style                            |
 +----------------+---------------------------------------------------+
 | bandit         | discover common security issues                   |
 +----------------+---------------------------------------------------+
