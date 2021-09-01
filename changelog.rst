@@ -4,6 +4,11 @@ Change Log
 
 This document records all notable changes to `Skeleton-Pyspark <https://github.com/datarootsio/skeleton-pyspark>`_.
 
+0.2.2 (2021-Aug-30)
+---------------------
+
+* Feature/Install dependabot
+
 0.2.1 (2021-May-07)
 ---------------------
 

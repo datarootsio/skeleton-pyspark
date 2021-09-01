@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "src"
-version = "0.2.0"
-description = ""
+version = "0.2.2"
+description = "An opinionated project skeleton for a Pyspark based data pipeline."
 authors = ["Dataroots <info@dataroots.io>"]
 license = "MIT"
 

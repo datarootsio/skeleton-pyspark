@@ -1,0 +1,7 @@
+version: 2
+updates:
+  # https://github.com/dependabot/dependabot-core/issues/1925
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
