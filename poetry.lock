@@ -380,7 +380,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "pyspark"
-version = "3.1.1"
+version = "3.1.2"
 description = "Apache Spark Python API"
 category = "dev"
 optional = false
@@ -673,7 +673,7 @@ brotli = ["brotlipy (>=0.6.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e1a994ddb6963f8ebc2f02b88b5269fe5e8dc01db7023648991f68cd6045e4ec"
+content-hash = "42e19b66acf9e0c5aae796d6ab68a0575fe2a32bd9d81d4c4c0a9e035658e044"
 
 [metadata.files]
 alabaster = [
@@ -945,7 +945,7 @@ pyparsing = [
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
 pyspark = [
-    {file = "pyspark-3.1.1.tar.gz", hash = "sha256:104abc146d4ffb72d4c683d25d7af5a6bf955d94590a76f542ee23185670aa7e"},
+    {file = "pyspark-3.1.2.tar.gz", hash = "sha256:5e25ebb18756e9715f4d26848cc7e558035025da74b4fc325a0ebc05ff538e65"},
 ]
 pytest = [
     {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
