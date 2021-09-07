@@ -20,7 +20,7 @@ bandit = "^1.7.0"
 flake8-annotations = "^2.6.2"
 flake8-docstrings = "^1.6.0"
 mypy = "^0.910"
-pytest-mock = "^3.6.0"
+pytest-mock = "^3.6.1"
     
 [build-system]
 requires = ["poetry-core>=1.0.0"]
