@@ -1,0 +1,54 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test-and-build-docs:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1.1.4
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies if cache does not exist
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+
+    - name: Lint with flake8 and black
+      run: make lint
+
+    - name: Static check with mypy
+      run: make mypy
+
+    - name: PyBandit to discover security issues
+      run: make bandit
+
+    - name: Produce coverage output
+      run: make coverage
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        fail_ci_if_error: true
+
+    - name: Sphinx documentation build
+      run: make SPHINXOPTS="-W" sphinx.html
