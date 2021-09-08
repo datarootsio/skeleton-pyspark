@@ -4,18 +4,6 @@ How To
 
 This is an opinionated project skeleton for a Pyspark based data pipeline.
 
-------------------------
-Run the example on spark
-------------------------
-
-Pre-requisite `git`, `spark-submit`,
-
-.. code:: bash
-
-    git clone git@github.com:datarootsio/skeleton-pyspark.git
-    cd skeleton-pyspark
-    spark-submit run.py --env dev
-
 -------------------------
 Running the project
 -------------------------
@@ -29,6 +17,7 @@ Install the developer dependencies with:
     cd skeleton-pyspark
     poetry --version
     poetry install
+    poetry run spark-submit run.py dev
 
 Makefile
 ---------
