@@ -1,0 +1,24 @@
+name: HOW-TO
+# Check if the how-to guide can be followed
+
+on: [push]
+
+jobs:
+  test-how-to-flow:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Poetry on Linux/Mac
+      if: matrix.os == "ubuntu-latest" || matrix.os == "macos-latest"
+      run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
+    - name: Install Poetry on Linux/Mac
+      if: matrix.os
+      run: (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
+      shell: powershell
