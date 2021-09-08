@@ -15,10 +15,10 @@ jobs:
         python-version: 3.8
 
     - name: Install Poetry on Linux/Mac
-      if: matrix.os == "ubuntu-latest" || matrix.os == "macos-latest"
+      if: (matrix.os == "ubuntu-latest" || matrix.os == "macos-latest")
       run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
     - name: Install Poetry on Linux/Mac
-      if: matrix.os
+      if: matrix.os == "windows-latest"
       run: (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
       shell: powershell
