@@ -4,6 +4,12 @@ Change Log
 
 This document records all notable changes to `Skeleton-Pyspark <https://github.com/datarootsio/skeleton-pyspark>`_.
 
+unreleased
+---------------------
+
+* Bugfix/docker-compose used instead of docker compose
+* Updated HOWTO and Makefile to run through the poetry run
+
 0.2.2 (2021-Aug-30)
 ---------------------
 

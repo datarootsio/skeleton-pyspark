@@ -41,10 +41,11 @@ sphinx.%: ## sphinx documentation wildcard (eg. sphinx.html)
 #############################################################################
 
 
-RUN_ARGS     ?= --env dev
+RUN_ARGS     ?= dev
+POETRY_PREFIX?= poetry run
 submit: ## Submits the job assuming the cluster has all the dependencies
 	@echo ">>> Submits the job without dependencies"
-	spark-submit run.py $(RUN_ARGS)
+	$(POETRY_PREFIX) spark-submit run.py $(RUN_ARGS)
 
 submit_with_dep: clean_docker pack_req submit_py_zip clean_docker
 
@@ -55,11 +56,11 @@ clean_docker: ## Cleans the docker images if they were created for the dependenc
 
 pack_req: ## Packs the dependencies into a zip file
 	@echo ">>> Packs the dependencies in a zip file"
-	docker compose up build_dep
+	docker-compose up build_dep
 
 submit_py_zip: ## Submits the job with --py-files archived at package.zip
 	@echo ">>> Submits the packaged zip file to add any additional modules"
-	spark-submit --py-files package.zip run.py $(RUN_ARGS)
+	$(POETRY_PREFIX) spark-submit --py-files package.zip run.py $(RUN_ARGS)
 
 help: ## show help on available commands
 	@grep -E '^[a-zA-Z.%_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
