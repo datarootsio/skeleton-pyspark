@@ -120,6 +120,7 @@ Windows Troublshoot
     - Store this "spark-3.1.2-bin-hadoop3.2" folder in a directory like "C:\Spark\spark-3.1.2-bin-hadoop3.2"
 3. Download Java SDK 11 (a.k.a. JDK) from https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
     - MUST create an Oracle account to download, open source JDKs like from https://jdk.java.net/java-se-ri/11 WILL NOT WORK!!!
+    - MUST be version 11, different versions may not work!
     - Store the JDK in a directory like "C:\Program Files\Java\jdk-11.0.12"
 4. Under "System Properties" > "Advanced" > "Environment Variables" (or simply search "environment" in search bar and select "Edit the system environment variables")
     - Set these System Variables:
@@ -162,5 +163,5 @@ Windows Troublshoot
 get the link and use it in Pycharm to clone the repo
 
 7. Pyspark errors and checks:
-* If Java gateway issues, check version of Java is JDK 11 (not JRE, not version 8 or version > 11), and check step 4 variables are setup correctly
-* If Hadoop issues, check step 4 variables are setup correctly
+- If Java gateway issues, check version of Java is JDK 11 (not JRE, not version 8 or version > 11), and check step 4 variables are setup correctly
+- If Hadoop issues, check step 4 variables are setup correctly
