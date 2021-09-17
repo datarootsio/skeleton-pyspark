@@ -162,8 +162,5 @@ Windows Troublshoot
 get the link and use it in Pycharm to clone the repo
 
 7. Pyspark errors and checks:
-* If Java gateway issues,
-    - check version of Java is JDK 11 (not JRE, not version 8 or version > 11)
-    - check step 4 variables are setup correctly
-* If Hadoop issues,
-    - check step 4 variables are setup correctly
+* If Java gateway issues, check version of Java is JDK 11 (not JRE, not version 8 or version > 11), and check step 4 variables are setup correctly
+* If Hadoop issues, check step 4 variables are setup correctly
