@@ -161,9 +161,9 @@ Windows Troublshoot
 6. Go to https://github.com/datarootsio/rootsacademy-pyspark-101, under Code, clone using SSH,
 get the link and use it in Pycharm to clone the repo
 
-Pyspark errors and checks:
+7. Pyspark errors and checks:
 * If Java gateway issues,
     - check version of Java is JDK 11 (not JRE, not version 8 or version > 11)
     - check step 4 variables are setup correctly
-*If Hadoop issues,
+* If Hadoop issues,
     - check step 4 variables are setup correctly
