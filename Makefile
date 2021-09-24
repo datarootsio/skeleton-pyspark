@@ -26,6 +26,9 @@ coverage: ## create coverage report
 	poetry run coverage run --source=src -m pytest
 	poetry run coverage xml
 
+build: ## create the wheel
+	@echo ">>> packaging library"
+	poetry build -vv
 
 ###########################################################################
 #### SPHINX Documentation
