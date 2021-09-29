@@ -47,6 +47,10 @@ submit: ## Submits the job assuming the cluster has all the dependencies
 	@echo ">>> Submits the job without dependencies"
 	$(POETRY_PREFIX) spark-submit run.py $(RUN_ARGS)
 
+build: ## create the wheel
+	@echo ">>> packaging library"
+	poetry build -vv
+
 submit_with_dep: clean_docker pack_req submit_py_zip clean_docker
 
 clean_docker: ## Cleans the docker images if they were created for the dependency
