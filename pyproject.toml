@@ -19,7 +19,7 @@ black = "^21.12b0"
 bandit = "^1.7.1"
 flake8-annotations = "^2.7.0"
 flake8-docstrings = "^1.6.0"
-mypy = "^0.930"
+mypy = "^0.941"
 pytest-mock = "^3.6.1"
 
 [build-system]
