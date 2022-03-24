@@ -1,54 +1,57 @@
-name: CI
-
+name: Upload AWS
 on: [push]
-
 jobs:
-  test-and-build-docs:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  AWS_and_Azure_Artifacts:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Install Poetry
-      uses: snok/install-poetry@v1.1.4
-      with:
-        virtualenvs-create: true
-        virtualenvs-in-project: true
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-    - name: Load cached venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v2
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.1.4
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
 
-    - name: Install dependencies if cache does not exist
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root
+      - name: Install dependencies using Poetry
+        run: poetry install
 
-    - name: Lint with flake8 and black
-      run: make lint
+      - name: Run Makefile for Linting/Testing
+        run: make test
+      # ----------AWS-----------
+      - name: Create .zip artifact (for AWS)
+        run: make submit_with_dep
+      - name: Upload .zip artifact (for AWS)
+        uses: actions/upload-artifact@v2
+        with:
+          name: aws-zip
+          path: package.zip
 
-    - name: Static check with mypy
-      run: make mypy
+      - name: Create .whl artifact (for Azure)
+        run: poetry build
+      - name: Upload .whl artifact (for Azure)
+        uses: actions/upload-artifact@v2
+        with:
+          name: azure-wheel
+          path: dist/src-0.2.2-py3-none-any.whl
 
-    - name: PyBandit to discover security issues
-      run: make bandit
-
-    - name: Produce coverage output
-      run: make coverage
-
-    - name: Upload coverage
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
-        fail_ci_if_error: true
-
-    - name: Sphinx documentation build
-      run: make SPHINXOPTS="-W" sphinx.html
+      # Github Action to Configure AWS Creentials https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
+      # S3 CLI Commands https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-listing-buckets
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Check AWS S3 connection
+        run: aws s3 ls s3://ra-march22-artifacts-bucket/
+      - name: Move artifacts, run.py and DAG files to S3
+        run: |
+          aws s3 cp *.zip s3://ra-march22-artifacts-bucket/
+          aws s3 cp ./dist/src-0.2.2-py3-none-any.whl s3://ra-march22-artifacts-bucket/
+          aws s3 cp *run.py s3://ra-march22-artifacts-bucket/
