@@ -13,6 +13,5 @@ def write_to_path(df: DataFrame, path_to_write: str = None) -> None:
         path_to_write (str): path for csv file to write the file at
 
     """
-    if path_to_write is None:
-        path_to_write = f"file://{Path(__file__).parents[2]}/counted_file.csv"
-    (df.coalesce(1).write.mode("overwrite").csv(path_to_write))
+    print(path_to_write)
+    df.show(100, False)
