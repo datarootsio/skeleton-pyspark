@@ -21,8 +21,6 @@ jobs:
       - name: Install dependencies using Poetry
         run: poetry install
 
-      - name: Run Makefile for Linting/Testing
-        run: make test
       # ----------AWS-----------
       - name: Create .zip artifact (for AWS)
         run: make submit_with_dep

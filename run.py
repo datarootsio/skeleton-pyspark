@@ -16,7 +16,7 @@ def main(
     """Execute main function for the package."""
     with spark_build(env=env) as spark:
         logger = log_utils.Logger(env=env, spark=spark)
-        logger.info("Spark and logger initialized")
+        logger.info("Spark and logger initialized.")
         jobs_main(spark, logger, file_path=file_path)
 
 
