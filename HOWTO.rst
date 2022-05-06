@@ -111,3 +111,57 @@ Different flavours of the documentation can be generated with wildcard entries:
     make sphinx.html # Builds HTML doc at docs/build/html/index.html
     make sphinx.epub # Builds EPUB doc at docs/build/epub
 
+----------
+Windows Troublshoot
+----------
+1. Download 7-zip from https://www.7-zip.org/download.html (to extract .zip/.tgz/.tar)
+2. Download Apache Spark from http://spark.apache.org/downloads.html (Spark Release 3.1.2, Pre-built for Hadoop 3.2 and later),
+    - Download is a .tgz file, extract it to get a .tar file and finally extract to get "spark-3.1.2-bin-hadoop3.2" folder
+    - Store this "spark-3.1.2-bin-hadoop3.2" folder in a directory like "C:\Spark\spark-3.1.2-bin-hadoop3.2"
+3. Download Java SDK 11 (a.k.a. JDK) from https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+    - MUST create an Oracle account to download, open source JDKs like from https://jdk.java.net/java-se-ri/11 WILL NOT WORK!!!
+    - MUST be version 11, different versions may not work!
+    - Store the JDK in a directory like "C:\Program Files\Java\jdk-11.0.12"
+4. Under "System Properties" > "Advanced" > "Environment Variables" (or simply search "environment" in search bar and select "Edit the system environment variables")
+    - Set these System Variables:
++----------------+------------------------------------------+
+| <Variable>     |  Value                                   |
++================+==========================================+
+| HADOOP_HOME    | C:\Spark\spark-3.1.2-bin-hadoop3.2       |
++----------------+------------------------------------------+
+| JAVA_HOME      | C:\Program Files\Java\jdk-11.0.12        |
++----------------+------------------------------------------+
+| SPARK_HOME     | C:\Spark\spark-3.1.2-bin-hadoop3.2       |
++----------------+------------------------------------------+
+    - Under User Variables, add these to Path:
+        - %JAVA_HOME%\bin
+        - %HADOOP_HOME%\bin
+        - %SPARK_HOME%\bin
+5. In PyCharm, create a new project like "testing java", create a file main.py and paste this code:
+
+.. code:: bash
+
+    import findspark
+    import pyspark
+    from pyspark.sql import SparkSession
+
+    findspark.init()
+    spark = SparkSession.builder.getOrCreate()
+    df = spark.sql("select 'spark' as hello ")
+    df.show()
+
+- if errors appear at "import" commands, right click on them to manually install!
+- run main.py, result should be something like:
+(error messages)
++-----+
+|hello|
++-----+
+|spark|
++-----+
+
+6. Go to https://github.com/datarootsio/rootsacademy-pyspark-101, under Code, clone using SSH,
+get the link and use it in Pycharm to clone the repo
+
+7. Pyspark errors and checks:
+- If Java gateway issues, check version of Java is JDK 11 (not JRE, not version 8 or version > 11), and check step 4 variables are setup correctly
+- If Hadoop issues, check step 4 variables are setup correctly
