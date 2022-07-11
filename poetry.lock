@@ -260,7 +260,7 @@ python-versions = "*"
 
 [[package]]
 name = "mypy"
-version = "0.930"
+version = "0.961"
 description = "Optional static typing for Python"
 category = "dev"
 optional = false
@@ -268,12 +268,13 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 mypy-extensions = ">=0.4.3"
-tomli = ">=1.1.0"
+tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
 typing-extensions = ">=3.10"
 
 [package.extras]
 dmypy = ["psutil (>=4.0)"]
 python2 = ["typed-ast (>=1.4.0,<2)"]
+reports = ["lxml"]
 
 [[package]]
 name = "mypy-extensions"
@@ -676,7 +677,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5b5839ed754eaf231433143d46981ca24e8ee13f2a9077ca4e44006e351fc70d"
+content-hash = "8c08d9ce7ab444ddf402906730a2783c6b258c1f8e1e8565c19905283a6413bc"
 
 [metadata.files]
 alabaster = []
