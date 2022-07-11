@@ -431,11 +431,11 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "pytest-mock"
-version = "3.6.1"
+version = "3.8.2"
 description = "Thin-wrapper around the mock package for easier use with pytest"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 pytest = ">=5.0"
@@ -676,7 +676,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5b5839ed754eaf231433143d46981ca24e8ee13f2a9077ca4e44006e351fc70d"
+content-hash = "b7e9855c468469307bbf9c3fc0e5a0aee2d80da539aab301f927626cb013bad7"
 
 [metadata.files]
 alabaster = []
