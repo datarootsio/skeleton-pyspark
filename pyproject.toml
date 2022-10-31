@@ -12,7 +12,7 @@ typer = "^0.4.0"
 [tool.poetry.dev-dependencies]
 Sphinx = "^5.0.2"
 flake8 = "^4.0.1"
-pytest = "^6.2.5"
+pytest = "^7.2.0"
 pyspark = "^3.1.2"
 coverage = "^6.4"
 black = "^22.6"
